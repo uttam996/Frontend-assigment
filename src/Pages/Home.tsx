@@ -1,5 +1,8 @@
 
+import { BaseUrl } from "../ApiEndPoints";
 import Component from "../Component/Component";
+import { UseGetData } from "../Hooks/UseApiHooks";
+
 import SampleSplitter from "./SampleSplitter";
 import { cn } from "./SampleSplitter";
 import { useResizable } from "react-resizable-layout";
@@ -12,7 +15,7 @@ export default function Home() {
     splitterProps: terminalDragBarProps,
   } = useResizable({
     axis: "y",
-    initial: 150,
+    initial: 250,
     min: 50,
     reverse: true,
   });
@@ -36,6 +39,17 @@ export default function Home() {
     reverse: true,
   });
 
+  
+  
+
+  const { data, isPending  } = UseGetData();
+
+  console.log(data?.data)
+
+
+
+
+
   return (
     <div
       className={
@@ -45,15 +59,25 @@ export default function Home() {
       <div className={"flex grow"}>
         <div
           className={cn("shrink-0 contents", isFileDragging && "dragging")}
-          style={{ width: fileW }}
+          style={{ width: fileW,
+         
+           }}
         >
-          <Component />
+          <Component 
+           data = {data?.data?.find((item:any) => item?.componentName === "component1") || ""}
+           name = "component1"
+           isPending={isPending}
+          />
         </div>
         <SampleSplitter isDragging={isFileDragging} {...fileDragBarProps} />
         <div className={"flex grow"}>
           <div className={"grow bg-darker contents"}> 
-          <Component />
-          Editor</div>
+          <Component 
+           data = {data?.data?.find((item:any) => item?.componentName === "component2") || ""}
+           name = "component2"
+           isPending={isPending}
+          />
+          </div>
           <SampleSplitter
             isDragging={isPluginDragging}
           
@@ -73,8 +97,12 @@ export default function Home() {
         )}
         style={{ height: terminalH }}
       >
-         <Component />
-        Terminal
+          <Component 
+           data = {data?.data?.find((item:any) => item?.componentName === "component3") || ""}
+           name = "component3"
+           isPending={isPending}
+          />
+        
       </div>
     </div>
   );
