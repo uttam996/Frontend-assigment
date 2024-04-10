@@ -1,9 +1,9 @@
-import { Box, Stack, Typography } from "@mui/material";
-import { Resizable } from "re-resizable";
-import React from "react";
+
+import Component from "../Component/Component";
 import SampleSplitter from "./SampleSplitter";
 import { cn } from "./SampleSplitter";
 import { useResizable } from "react-resizable-layout";
+
 
 export default function Home() {
   const {
@@ -28,7 +28,7 @@ export default function Home() {
   const {
     isDragging: isPluginDragging,
     position: pluginW,
-    splitterProps: pluginDragBarProps,
+  
   } = useResizable({
     axis: "x",
     initial: 200,
@@ -47,14 +47,16 @@ export default function Home() {
           className={cn("shrink-0 contents", isFileDragging && "dragging")}
           style={{ width: fileW }}
         >
-          File Tree
+          <Component />
         </div>
         <SampleSplitter isDragging={isFileDragging} {...fileDragBarProps} />
         <div className={"flex grow"}>
-          <div className={"grow bg-darker contents"}>Editor</div>
+          <div className={"grow bg-darker contents"}> 
+          <Component />
+          Editor</div>
           <SampleSplitter
             isDragging={isPluginDragging}
-            {...pluginDragBarProps}
+          
           />
         
         </div>
@@ -71,6 +73,7 @@ export default function Home() {
         )}
         style={{ height: terminalH }}
       >
+         <Component />
         Terminal
       </div>
     </div>
