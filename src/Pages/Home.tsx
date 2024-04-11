@@ -1,5 +1,4 @@
 
-import { BaseUrl } from "../ApiEndPoints";
 import Component from "../Component/Component";
 import { UseGetData } from "../Hooks/UseApiHooks";
 
@@ -30,7 +29,7 @@ export default function Home() {
   });
   const {
     isDragging: isPluginDragging,
-    position: pluginW,
+    // position: pluginW,
   
   } = useResizable({
     axis: "x",
