@@ -41,7 +41,7 @@ export default function Home() {
   
   
 
-  const { data, isPending  } = UseGetData();
+  const { data, isPending,refetch  } = UseGetData();
 
   console.log(data?.data)
 
@@ -66,6 +66,7 @@ export default function Home() {
            data = {data?.data?.find((item:any) => item?.componentName === "component1") || ""}
            name = "component1"
            isPending={isPending}
+           refetch={refetch}
           />
         </div>
         <SampleSplitter isDragging={isFileDragging} {...fileDragBarProps} />
@@ -75,6 +76,7 @@ export default function Home() {
            data = {data?.data?.find((item:any) => item?.componentName === "component2") || ""}
            name = "component2"
            isPending={isPending}
+           refetch={refetch}
           />
           </div>
           <SampleSplitter
@@ -100,6 +102,7 @@ export default function Home() {
            data = {data?.data?.find((item:any) => item?.componentName === "component3") || ""}
            name = "component3"
            isPending={isPending}
+           refetch={refetch}
           />
         
       </div>

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { UseAddData, UseUpdateData } from "../Hooks/UseApiHooks";
 import { toast } from "react-toastify";
 
-export default function Component({ data, name }: any) {
+export default function Component({ data, name,refetch }: any) {
   const [value, setValue] = React.useState(data?.data);
   const [isEdit, setIsEdit] = React.useState(false);
   const [isAdd, setIsAdd] = React.useState(false);
@@ -21,6 +21,7 @@ export default function Component({ data, name }: any) {
         componentName: name,
         data: value,
       });
+      refetch();
 
       toast.success("Data added successfully");
 
@@ -40,6 +41,7 @@ export default function Component({ data, name }: any) {
         componentId: data?._id,
 
       });
+      refetch();
 
       toast.success("Data updated successfully");
       setIsEdit(false);
